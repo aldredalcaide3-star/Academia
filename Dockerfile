@@ -12,4 +12,4 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction \
     && npm install \
     && npm run build
 
-CMD sh -c 'touch database/database.sqlite && php artisan migrate --force && php artisan config:cache && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}'
+CMD sh -c 'touch database/database.sqlite; mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs bootstrap/cache; chmod -R 775 storage bootstrap/cache; php artisan migrate --force; php artisan config:cache; php artisan route:cache; php artisan view:cache; php artisan serve --host=0.0.0.0 --port=${PORT:-8080}'

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route('dashboard.home');
+    return view('dashboard_layout.homepage');
 });
 
 Route::prefix('dashboard')->group(function () {
